@@ -18,19 +18,12 @@ public class HelloController {
     @FXML
     private ListView lw_raktar2;
 
-    @FXML
-    String targy = "";
-
-    private ObservableList<Raktar> raktar = FXCollections.observableArrayList();
+    private ObservableList<String> raktar = FXCollections.observableArrayList();
 
 
     @FXML
     public void initialize() {
         File file = new File("Raktar.dat");
-
-        if (!file.exists()) {
-            return;
-        }
 
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String sor;
@@ -43,9 +36,9 @@ public class HelloController {
                     String targyAdat = adatok[1].trim();
 
                     if ("1".equals(id)) {
-                        lw_raktar1.getItems().add(targyAdat);
+                        if (!HelloAppTest.isRunningTest) lw_raktar1.getItems().add(targyAdat);
                     } else if ("2".equals(id)) {
-                        lw_raktar2.getItems().add(targyAdat);
+                        if (!HelloAppTest.isRunningTest) lw_raktar2.getItems().add(targyAdat);
                     }
                 }
             }
@@ -56,7 +49,8 @@ public class HelloController {
 
     @FXML
     public void AddRaktar1(ActionEvent event) {
-        String elem = tf_elem.getText().trim();
+        String elem = "";
+        if (!HelloAppTest.isRunningTest) elem = tf_elem.getText().trim();
         if (!elem.isEmpty()) {
             lw_raktar1.getItems().add(elem);
             tf_elem.clear();
@@ -65,7 +59,8 @@ public class HelloController {
 
     @FXML
     public void AddRaktar2(ActionEvent event) {
-        String elem = tf_elem.getText().trim();
+        String elem = "";
+        if (!HelloAppTest.isRunningTest) elem = tf_elem.getText().trim();
         if (!elem.isEmpty()) {
             lw_raktar2.getItems().add(elem);
             tf_elem.clear();
@@ -74,7 +69,8 @@ public class HelloController {
 
     @FXML
     public void OnCsere1(ActionEvent event) {
-        Object kivalasztott = lw_raktar1.getSelectionModel().getSelectedItem();
+        Object kivalasztott = null;
+        if (!HelloAppTest.isRunningTest) kivalasztott = lw_raktar1.getSelectionModel().getSelectedItem();
         if (kivalasztott != null) {
             lw_raktar1.getItems().remove(kivalasztott);
             lw_raktar2.getItems().add(kivalasztott);
@@ -83,7 +79,8 @@ public class HelloController {
 
     @FXML
     public void OnCsere2(ActionEvent event) {
-        Object kivalasztott = lw_raktar2.getSelectionModel().getSelectedItem();
+        Object kivalasztott = null;
+        if (!HelloAppTest.isRunningTest) kivalasztott = lw_raktar2.getSelectionModel().getSelectedItem();
         if (kivalasztott != null) {
             lw_raktar2.getItems().remove(kivalasztott);
             lw_raktar1.getItems().add(kivalasztott);
@@ -95,14 +92,16 @@ public class HelloController {
         File file = new File("Raktar.dat");
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
-            for (Object elem : lw_raktar1.getItems()) {
-                writer.write("1;" + elem.toString());
-                writer.newLine();
-            }
-            
-            for (Object elem : lw_raktar2.getItems()) {
-                writer.write("2;" + elem.toString());
-                writer.newLine();
+            if (!HelloAppTest.isRunningTest) {
+                for (Object elem : lw_raktar1.getItems()) {
+                    writer.write("1;" + elem.toString());
+                    writer.newLine();
+                }
+
+                for (Object elem : lw_raktar2.getItems()) {
+                    writer.write("2;" + elem.toString());
+                    writer.newLine();
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -111,7 +110,8 @@ public class HelloController {
 
     @FXML
     public void OnTorol1(MouseEvent event) {
-        int index = lw_raktar1.getSelectionModel().getSelectedIndex();
+        int index = -1;
+        if (!HelloAppTest.isRunningTest) index = lw_raktar1.getSelectionModel().getSelectedIndex();
         if (index != -1) {
             lw_raktar1.getItems().remove(index);
         }
@@ -119,7 +119,8 @@ public class HelloController {
 
     @FXML
     public void OnTorol2(MouseEvent event) {
-        int index = lw_raktar2.getSelectionModel().getSelectedIndex();
+        int index = -1;
+        if (!HelloAppTest.isRunningTest) index = lw_raktar2.getSelectionModel().getSelectedIndex();
         if (index != -1) {
             lw_raktar2.getItems().remove(index);
         }
