@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" prefWidth="500.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.raktar.HelloController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+   <children>
+      <HBox alignment="TOP_CENTER" prefHeight="25.0" prefWidth="600.0">
+         <children>
+            <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#AddRaktar1" prefHeight="25.0" prefWidth="90.0" text="Raktár1">
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@add.png" />
+                     </image></ImageView>
+               </graphic>
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </Button>
+            <TextField fx:id="tf_elem" prefHeight="25.0" prefWidth="150.0">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin></TextField>
+            <Button mnemonicParsing="false" onAction="#AddRaktar2" prefHeight="25.0" prefWidth="90.0" text="Raktát2">
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@add.png" />
+                     </image></ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER">
+         <children>
+            <ListView fx:id="lw_raktar1" />
+            <VBox alignment="CENTER" prefWidth="70.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#OnCsere1">
+                     <graphic>
+                        <ImageView fitHeight="35.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@right.png" />
+                           </image></ImageView>
+                     </graphic>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#OnCsere2">
+                     <graphic>
+                        <ImageView fitHeight="35.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@left.png" />
+                           </image></ImageView>
+                     </graphic>
+                  </Button>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="15.0" fitWidth="150.0" onMouseClicked="#OnTorol1" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@del.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <ImageView fitHeight="15.0" fitWidth="150.0" onMouseClicked="#OnTorol2" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@del.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="5.0" right="5.0" top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+               <HBox.margin>
+                  <Insets left="5.0" right="5.0" />
+               </HBox.margin>
+            </VBox>
+            <ListView fx:id="lw_raktar2" />
+         </children>
+      </HBox>
+      <Button alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#OnMentes" prefWidth="90.0" text="Mentés">
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@save.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+   </children>
+</VBox>
